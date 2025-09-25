@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS channel(
     age_restricted BOOLEAN,
     owner_id UUID,
     created_at TIMESTAMP WITH TIME ZONE,
+    updated_at     TIMESTAMP WITHOUT TIME ZONE,
 
     CONSTRAINT pk_channel PRIMARY KEY (id),
     CONSTRAINT fk_channel_owner FOREIGN KEY (owner_id) REFERENCES "user" (id)
