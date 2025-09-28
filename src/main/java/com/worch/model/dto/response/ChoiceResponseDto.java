@@ -11,7 +11,6 @@ public record ChoiceResponseDto(
         UUID channelId,
         String title,
         String description,
-        String image,
         boolean isPersonal,
         ChoiceStatus status,
         ZonedDateTime deadline,

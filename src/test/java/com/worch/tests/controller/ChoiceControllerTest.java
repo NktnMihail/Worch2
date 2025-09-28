@@ -57,7 +57,6 @@ class ChoiceControllerTest{
                null,
                "test title",
                "test description",
-               null,
                true,
                ChoiceStatus.ACTIVE,
                ZonedDateTime.now().plusDays(5),
