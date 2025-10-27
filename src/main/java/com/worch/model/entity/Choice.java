@@ -12,10 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 
@@ -25,6 +23,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "choice")
 @Getter
 @Setter
+@Builder
 public class Choice {
 
   @Id

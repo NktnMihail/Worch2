@@ -1,10 +1,6 @@
 package com.worch.controllers;
 
-import com.worch.mapper.ChoiceMapper;
 import com.worch.model.dto.response.ChoiceResponseDto;
-import com.worch.model.entity.Choice;
-import com.worch.repository.ChannelRepository;
-import com.worch.repository.ChoiceRepository;
 import com.worch.service.ChoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +13,10 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/choices")
+@RequestMapping("/api/choices")
 @RequiredArgsConstructor
 public class ChoiceController {
 
-    private final ChoiceRepository choiceRepository;
-    private final ChoiceMapper choiceMapper;
     private final ChoiceService choiceService;
 
     @GetMapping

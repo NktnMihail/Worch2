@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS channel(
     age_restricted BOOLEAN,
     owner_id UUID,
     created_at TIMESTAMP WITH TIME ZONE,
-    updated_at     TIMESTAMP WITHOUT TIME ZONE,
+    updated_at     TIMESTAMP WITH TIME ZONE,
 
     CONSTRAINT pk_channel PRIMARY KEY (id),
     CONSTRAINT fk_channel_owner FOREIGN KEY (owner_id) REFERENCES "user" (id)
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "group"(
 
 );
 
-CREATE TABLE IF NOT EXISTS Group_user(
+CREATE TABLE IF NOT EXISTS group_user(
     group_id UUID,
     user_id UUID,
 
@@ -60,7 +60,8 @@ CREATE TABLE IF NOT EXISTS choice(
 
     CONSTRAINT pk_choice PRIMARY KEY (id),
     CONSTRAINT fk_choice_creator FOREIGN KEY (creator_id) REFERENCES "user" (id),
-    CONSTRAINT fk_choice_channel FOREIGN KEY (channel_id) REFERENCES channel (id)
+    CONSTRAINT fk_choice_channel FOREIGN KEY (channel_id) REFERENCES channel (id),
+    CONSTRAINT chk_choice_status CHECK (status IN ('active', 'closed', 'archived'))
 );
 
 CREATE TABLE IF NOT EXISTS choice_option (
@@ -94,7 +95,8 @@ CREATE TABLE IF NOT EXISTS expert_application(
     submitted_at TIMESTAMP WITH TIME ZONE,
 
     CONSTRAINT pk_expert_application PRIMARY KEY (id),
-    CONSTRAINT fk_expert_application_user FOREIGN KEY (user_id) REFERENCES "user" (id)
+    CONSTRAINT fk_expert_application_user FOREIGN KEY (user_id) REFERENCES "user" (id),
+    CONSTRAINT chk_expert_application_status CHECK (status IN ('NEW', 'APPROVED', 'REJECTED', 'IN_PROGRESS'))
 );
 
 CREATE TABLE IF NOT EXISTS expert_profile(

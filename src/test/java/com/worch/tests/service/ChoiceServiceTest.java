@@ -48,47 +48,50 @@ public class ChoiceServiceTest {
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime deadline = now.plusDays(7);
 
-        choice1 = new Choice();
-        choice1.setId(UUID.randomUUID());
-        choice1.setCreatorId(FIRST_CREATOR_ID);
-        choice1.setTitle("First Choice");
-        choice1.setPersonal(true);
-        choice1.setStatus(ChoiceStatus.ACTIVE);
-        choice1.setDeadline(deadline);
-        choice1.setCreatedAt(now);
+        choice1 = Choice.builder()
+                .id(UUID.randomUUID())
+                .creatorId(FIRST_CREATOR_ID)
+                .title("First Choice")
+                .personal(true)
+                .status(ChoiceStatus.ACTIVE)
+                .deadline(deadline)
+                .createdAt(now)
+                .build();
 
-        choice2 = new Choice();
-        choice2.setId(UUID.randomUUID());
-        choice2.setCreatorId(SECOND_CREATOR_ID);
-        choice2.setTitle("Second Choice");
-        choice2.setPersonal(false);
-        choice2.setStatus(ChoiceStatus.ACTIVE);
-        choice2.setDeadline(deadline);
-        choice2.setCreatedAt(now);
+        choice2 = Choice.builder()
+                .id(UUID.randomUUID())
+                .creatorId(SECOND_CREATOR_ID)
+                .title("Second Choice")
+                .personal(false)
+                .status(ChoiceStatus.ACTIVE)
+                .deadline(deadline)
+                .createdAt(now)
+                .build();
 
-        dto1 = new ChoiceResponseDto(
-                choice1.getId(),
-                choice1.getCreatorId(),
-                choice1.getChannelId(),
-                choice1.getTitle(),
-                choice1.getDescription(),
-                choice1.isPersonal(),
-                choice1.getStatus(),
-                choice1.getDeadline(),
-                choice1.getCreatedAt()
-        );
+        dto1 = ChoiceResponseDto.builder()
+                .id(choice1.getId())
+                .creatorId(choice1.getCreatorId())
+                .channelId(choice1.getChannelId())
+                .title(choice1.getTitle())
+                .description(choice1.getDescription())
+                .personal(choice1.isPersonal())
+                .status(choice1.getStatus())
+                .deadline(choice1.getDeadline())
+                .createdAt(choice1.getCreatedAt())
+                .build();
 
-        dto2 = new ChoiceResponseDto(
-                choice2.getId(),
-                choice2.getCreatorId(),
-                choice2.getChannelId(),
-                choice2.getTitle(),
-                choice2.getDescription(),
-                choice2.isPersonal(),
-                choice2.getStatus(),
-                choice2.getDeadline(),
-                choice2.getCreatedAt()
-        );
+        dto2 = ChoiceResponseDto.builder()
+                .id(choice2.getId())
+                .creatorId(choice2.getCreatorId())
+                .channelId(choice2.getChannelId())
+                .title(choice2.getTitle())
+                .description(choice2.getDescription())
+                .personal(choice2.isPersonal())
+                .status(choice2.getStatus())
+                .deadline(choice2.getDeadline())
+                .createdAt(choice2.getCreatedAt())
+                .build();
+        ;
     }
 
     @Test
@@ -137,8 +140,4 @@ public class ChoiceServiceTest {
         verify(choiceRepository).findAll(any(Specification.class));
         verifyNoInteractions(choiceMapper);
     }
-
-
-
-
 }
