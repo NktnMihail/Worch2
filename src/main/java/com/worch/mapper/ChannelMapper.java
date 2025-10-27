@@ -1,6 +1,5 @@
 package com.worch.mapper;
 
-
 import com.worch.model.dto.response.ChannelResponseDto;
 import com.worch.model.entity.Channel;
 import org.mapstruct.Mapper;
